@@ -2,5 +2,7 @@
 <project version="4">
   <component name="JpaBuddyIdeaProjectConfig">
     <option name="defaultUnitInitialized" value="true" />
+    <option name="reverseEngineeringLastDbConnectionId" value="ff329c9b-2e1d-46ba-9815-88234ec6e28b" />
+    <option name="reLastEntityCreationPackage" value="main_api/src/main/java/com/jaab/revature/model" />
   </component>
 </project>

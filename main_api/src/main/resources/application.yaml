@@ -1,6 +1,11 @@
 spring:
   application:
     name: project2_mainapi
+  datasource:
+    username: Joseb89
+    password: Elessar1989!
+    url: jdbc:postgresql://project2-sql.postgres.database.azure.com:5432/project2_jaab
+    driver-class-name: org.postgresql.Driver
 
 server:
   port: 8081
