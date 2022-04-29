@@ -1,6 +1,6 @@
 package com.jaab.revature.controller;
 
-import com.jaab.revature.model.User;
+import com.jaab.revature.model.Patient;
 import com.jaab.revature.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,9 +18,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/newUser", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(value = "/newPatient", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public void createUser(@RequestBody User user) {
-        userService.createUser(user);
+    public void createPatient(@RequestBody Patient patient) {
+        userService.createPatient(patient);
     }
 }
