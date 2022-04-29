@@ -1,7 +1,9 @@
 package com.jaab.revature.service;
 
+import com.jaab.revature.dao.DoctorRepository;
 import com.jaab.revature.dao.PatientRepository;
 import com.jaab.revature.dao.UserRepository;
+import com.jaab.revature.model.Doctor;
 import com.jaab.revature.model.Patient;
 import com.jaab.revature.model.Role;
 import com.jaab.revature.model.User;
@@ -14,6 +16,7 @@ public class UserService {
 
     private UserRepository userRepository;
     private PatientRepository patientRepository;
+    private DoctorRepository doctorRepository;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -23,6 +26,10 @@ public class UserService {
     @Autowired
     public void setPatientRepository(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
+    }
+    @Autowired
+    public void setDoctorRepository(DoctorRepository doctorRepository) {
+        this.doctorRepository = doctorRepository;
     }
 
     /**
@@ -39,14 +46,15 @@ public class UserService {
     }
 
     /**
-     * Saves a new user to the database
-     * @param source - The new user created in previous method
-     * @param role - The role of the user
+     * Saves a new doctor to the doctor and users database
+     * @param doctor - the new doctor
      */
-    private void createUser(Object source, Role role) {
+    public void createDoctor(Doctor doctor){
         User user = new User();
-        BeanUtils.copyProperties(source, user);
-        user.setRole(role);
+        BeanUtils.copyProperties(doctor, user);
+        user.setRole(Role.PHYSICIAN);
         userRepository.save(user);
+        doctor.setId(user.getId());
+        doctorRepository.save(doctor);
     }
 }
