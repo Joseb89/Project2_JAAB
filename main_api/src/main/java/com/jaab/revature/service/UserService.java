@@ -30,8 +30,12 @@ public class UserService {
      * @param patient - the new patient
      */
     public void createPatient(Patient patient) {
+        User user = new User();
+        BeanUtils.copyProperties(patient, user);
+        user.setRole(Role.PATIENT);
+        userRepository.save(user);
+        patient.setId(user.getId());
         patientRepository.save(patient);
-        createUser(patient, Role.PATIENT);
     }
 
     /**
