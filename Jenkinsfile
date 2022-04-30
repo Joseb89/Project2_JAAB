@@ -4,9 +4,11 @@ pipeline {
     stages {
       stage('Build') {
         steps {
-            withMaven {
-                sh 'mvn clean compile -DskipTests package'
-          }
+            dir('main_api'){
+                withMaven {
+                    sh 'mvn clean compile -DskipTests package'
+              }
+           }
         }
       }
    }
