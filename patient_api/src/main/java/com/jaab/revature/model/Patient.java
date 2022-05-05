@@ -1,6 +1,9 @@
 package com.jaab.revature.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "patients")
@@ -137,4 +140,5 @@ public class Patient {
     public void setBloodType(String bloodType) {
         this.bloodType = bloodType;
     }
+
 }
