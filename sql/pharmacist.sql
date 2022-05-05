@@ -1,4 +1,4 @@
-create table if not exists pharmacist(
+create table if not exists pharmacists(
 	pharmacist_id BIGINT primary key,
 	first_name VARCHAR(20) not null,
     last_name VARCHAR(30) not null,
@@ -6,4 +6,6 @@ create table if not exists pharmacist(
     user_password VARCHAR(100) not null
 );
 
-select * from pharmacist
+select * from pharmacists;
+
+drop table if exists pharmacists;

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: project2_patientapi
+    name: project2_pharmacyapi
   datasource:
     username: Joseb89
     password: Elessar1989!
@@ -20,5 +20,5 @@ spring:
       ddl-auto: update
 
 server:
-  port: 8082
+  port: 8084
   
