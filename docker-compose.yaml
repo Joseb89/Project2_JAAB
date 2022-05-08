@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  mainapi:
+    build: ./main_api
+    ports:
+      - "8081:8081"
+    container_name: mainapi
+    restart: on-failure
+  patientapi:
+    build: ./patient_api
+    ports:
+      - "8082:8082"
+    container_name: patientapi
+    restart: on-failure
+  doctorapi:
+    build: ./doctor_api
+    ports:
+      - "8083:8083"
+    container_name: doctorapi
+    restart: on-failure
+  pharmacyapi:
+    build: ./pharmacy_api
+    ports:
+      - "8084:8084"
+    container_name: pharmacyapi
+    restart: on-failure
