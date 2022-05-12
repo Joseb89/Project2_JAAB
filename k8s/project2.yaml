@@ -1,0 +1,119 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project2-deployment
+  labels:
+    app: project2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: project2
+  template:
+    metadata:
+      labels:
+        app: project2
+    spec:
+      containers:
+        - image: joseb89/project2mainapi
+          name: mainapi
+          ports:
+            - containerPort: 8081
+          env:
+            - name: AZURE_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-username
+            - name: AZURE_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-password
+            - name: AZURE_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: project2-configmap
+                  key: database-url
+        - image: joseb89/project2patientapi
+          name: patientapi
+          ports:
+            - containerPort: 8082
+          env:
+            - name: AZURE_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-username
+            - name: AZURE_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-password
+            - name: AZURE_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: project2-configmap
+                  key: database-url
+        - image: joseb89/project2doctorapi
+          name: doctorapi
+          ports:
+            - containerPort: 8083
+          env:
+            - name: AZURE_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-username
+            - name: AZURE_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-password
+            - name: AZURE_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: project2-configmap
+                  key: database-url
+        - image: joseb89/project2pharmacyapi
+          name: pharmacyapi
+          ports:
+            - containerPort: 8084
+          env:
+            - name: AZURE_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-username
+            - name: AZURE_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-password
+            - name: AZURE_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: project2-configmap
+                  key: database-url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: project2-service
+spec:
+  selector:
+    app: project2
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
+    - protocol: TCP
+      port: 8083
+      targetPort: 8083
+    - protocol: TCP
+      port: 8084
+      targetPort: 8084
