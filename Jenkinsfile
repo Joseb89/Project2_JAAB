@@ -49,12 +49,13 @@ pipeline {
         }
       }
 
-      stage("Remove Docker Images")
+      stage("Remove Docker Images") {
         steps {
             sh 'docker rmi joseb89/project2mainapi:latest'
             sh 'docker rmi joseb89/project2patientapi:latest'
             sh 'docker rmi joseb89/project2doctorapi:latest'
             sh 'docker rmi joseb89/project2pharmacyapi:latest'
         }
+      }
    }
 }
