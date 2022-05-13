@@ -5,7 +5,7 @@ FROM maven:3.8.5-openjdk-11-slim AS build
 WORKDIR /home/app
 COPY src ./src
 COPY pom.xml .
-RUN mvn -f /home/app/pom.xml clean package
+RUN mvn -f /home/app/pom.xml clean -DskipTests package
 
 #
 # Package stage

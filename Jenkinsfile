@@ -12,7 +12,7 @@ pipeline {
         steps {
            dir('main_api'){
               withMaven {
-                 sh 'mvn clean compile -DskipTests package'
+                 sh 'mvn clean -DskipTests package'
               }
 
               script {
@@ -21,7 +21,7 @@ pipeline {
            }
            dir('patient_api'){
               withMaven {
-                  sh 'mvn clean compile -DskipTests package'
+                  sh 'mvn clean -DskipTests package'
               }
 
               script {
@@ -30,7 +30,7 @@ pipeline {
            }
            dir('doctor_api'){
               withMaven {
-                  sh 'mvn clean compile -DskipTests package'
+                  sh 'mvn clean -DskipTests package'
               }
 
               script {
@@ -39,7 +39,7 @@ pipeline {
            }
            dir('pharmacy_api'){
               withMaven {
-                   sh 'mvn clean compile -DskipTests package'
+                   sh 'mvn clean -DskipTests package'
               }
 
               script {
