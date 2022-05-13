@@ -16,7 +16,7 @@ pipeline {
               }
 
               script {
-                dockerImage = docker.build 'joseb89/project2mainapi'
+                dockerImage = docker.build 'joseb89/project2mainapi:latest'
               }
            }
            dir('patient_api'){
@@ -25,7 +25,7 @@ pipeline {
               }
 
               script {
-                dockerImage = docker.build 'joseb89/project2patientapi'
+                dockerImage = docker.build 'joseb89/project2patientapi:latest'
               }
            }
            dir('doctor_api'){
@@ -34,7 +34,7 @@ pipeline {
               }
 
               script {
-                dockerImage = docker.build 'joseb89/project2doctorapi'
+                dockerImage = docker.build 'joseb89/project2doctorapi:latest'
               }
            }
            dir('pharmacy_api'){
@@ -43,7 +43,7 @@ pipeline {
               }
 
               script {
-                dockerImage = docker.build 'joseb89/project2pharmacyapi'
+                dockerImage = docker.build 'joseb89/project2pharmacyapi:latest'
               }
            }
         }
