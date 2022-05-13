@@ -16,6 +16,7 @@ pipeline {
               }
 
               script {
+                sh 'docker version'
                 dockerImage = docker.build "joseb89/project2mainapi:latest"
               }
            }
