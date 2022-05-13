@@ -16,7 +16,7 @@ pipeline {
               }
 
               script {
-                dockerImage = docker.build "joseb89/project2mainapi:latest"
+                sh "sudo docker build -t joseb89/project2mainapi:${BUILD_NUMBER}"
               }
            }
            dir('patient_api'){
@@ -25,7 +25,7 @@ pipeline {
               }
 
               script {
-                dockerImage = docker.build "joseb89/project2patientapi:latest"
+                sh "sudo docker build -t joseb89/project2patientapi:${BUILD_NUMBER}"
               }
            }
            dir('doctor_api'){
@@ -34,7 +34,7 @@ pipeline {
               }
 
               script {
-                dockerImage = docker.build "joseb89/project2doctorapi:latest"
+                sh "sudo docker build -t joseb89/project2doctorapi:${BUILD_NUMBER}"
               }
            }
            dir('pharmacy_api'){
@@ -43,7 +43,7 @@ pipeline {
               }
 
               script {
-                dockerImage = docker.build "joseb89/project2pharmacyapi:latest"
+                sh "sudo docker build -t joseb89/project2pharmacyapi:${BUILD_NUMBER}"
               }
            }
         }
@@ -51,10 +51,12 @@ pipeline {
 
       stage("Remove Docker Images") {
         steps {
-            sh 'docker rmi joseb89/project2mainapi:latest'
-            sh 'docker rmi joseb89/project2patientapi:latest'
-            sh 'docker rmi joseb89/project2doctorapi:latest'
-            sh 'docker rmi joseb89/project2pharmacyapi:latest'
+           script {
+             sh "sudo docker rmi joseb89/project2mainapi:${BUILD_NUMBER}"
+             sh "sudo docker rmi joseb89/project2patientapi:${BUILD_NUMBER}"
+             sh "sudo docker rmi joseb89/project2doctorapi:${BUILD_NUMBER}"
+             sh "sudo docker rmi joseb89/project2pharmacyapi:${BUILD_NUMBER}"
+           }
         }
       }
    }
