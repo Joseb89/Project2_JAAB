@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project2main-deployment
+  labels:
+    app: project2main
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: project2main
+  template:
+    metadata:
+      labels:
+        app: project2main
+    spec:
+      containers:
+        - image: joseb89/project2mainapi:latest
+          name: project2main
+          ports:
+            - containerPort: 8081
+          env:
+            - name: AZURE_DB_USERNAME
+              value: Joseb89
+            - name: AZURE_DB_PASSWORD
+              value: Elessar1989!
+            - name: AZURE_DB_URL
+              value: jdbc:postgresql://project2-sql.postgres.database.azure.com:5432/project2_jaab
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: project2main-service
+spec:
+  selector:
+    app: project2main
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+      nodePort: 30001

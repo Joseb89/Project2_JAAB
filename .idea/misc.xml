@@ -11,11 +11,4 @@
   <component name="ProjectType">
     <option name="id" value="jpab" />
   </component>
-  <component name="SwUserDefinedSpecifications">
-    <option name="specTypeByUrl">
-      <map>
-        <entry key="file://$PROJECT_DIR$/k8s/project2.yaml" value="openapi31" />
-      </map>
-    </option>
-  </component>
 </project>

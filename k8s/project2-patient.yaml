@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project2patient-deployment
+  labels:
+    app: project2patient
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: project2patient
+  template:
+    metadata:
+      labels:
+        app: project2patient
+    spec:
+      containers:
+        - image: joseb89/project2patientapi:latest
+          name: project2patient
+          ports:
+            - containerPort: 8082
+          env:
+            - name: AZURE_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-username
+            - name: AZURE_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-password
+            - name: AZURE_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: project2-configmap
+                  key: database-url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: project2patient-service
+spec:
+  selector:
+    app: project2patient
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
+      nodePort: 30002

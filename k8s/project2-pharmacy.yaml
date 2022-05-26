@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project2pharmacy-deployment
+  labels:
+    app: project2pharmacy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: project2pharmacy
+  template:
+    metadata:
+      labels:
+        app: project2pharmacy
+    spec:
+      containers:
+        - image: joseb89/project2pharmacyapi:latest
+          name: project2pharmacy
+          ports:
+            - containerPort: 8084
+          env:
+            - name: AZURE_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-username
+            - name: AZURE_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-password
+            - name: AZURE_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: project2-configmap
+                  key: database-url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: project2pharmacy-service
+spec:
+  selector:
+    app: project2pharmacy
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8084
+      targetPort: 8084
+      nodePort: 30004
