@@ -21,11 +21,20 @@ spec:
             - containerPort: 8081
           env:
             - name: AZURE_DB_USERNAME
-              value: Joseb89
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-username
             - name: AZURE_DB_PASSWORD
-              value: Elessar1989!
+              valueFrom:
+                secretKeyRef:
+                  name: project2-secret
+                  key: db-password
             - name: AZURE_DB_URL
-              value: jdbc:postgresql://project2-sql.postgres.database.azure.com:5432/project2_jaab
+              valueFrom:
+                configMapKeyRef:
+                  name: project2-configmap
+                  key: database-url
 ---
 apiVersion: v1
 kind: Service
