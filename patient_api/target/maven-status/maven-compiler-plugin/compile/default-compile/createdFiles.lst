@@ -1,6 +1,7 @@
 com\jaab\revature\dto\UserDTO.class
 com\jaab\revature\service\PatientService.class
 com\jaab\revature\controller\PatientController.class
+com\jaab\revature\dto\AddressDTO.class
 com\jaab\revature\PatientApiApplication.class
 com\jaab\revature\model\Patient.class
 com\jaab\revature\dao\PatientRepository.class
