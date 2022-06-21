@@ -20,7 +20,7 @@ public class PatientService {
 
     @Autowired
     public PatientService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://project2main-service:8081").build();
+        this.webClient = webClientBuilder.baseUrl("52.143.244/main").build();
     }
 
     @Autowired

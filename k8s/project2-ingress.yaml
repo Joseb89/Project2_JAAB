@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: project2-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: edelweiss.com
+      http:
+        paths:
+          - path: /main
+            pathType: Prefix
+            backend:
+              service:
+                name: project2main-service
+                port:
+                  number: 8081
+          - path: /patient
+            pathType: Prefix
+            backend:
+              service:
+                name: project2patient-service
+                port:
+                  number: 8082
